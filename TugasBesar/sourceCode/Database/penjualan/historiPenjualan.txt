@@ -1,0 +1,30 @@
+2024-11-30 17:29:08.534321
+Username : 089694226167
+Nasi Goreng | 15000
+Nasi Goreng | 15000
+Total Harga adalah Rp. 30.000
+
+2024-11-30 17:53:18.283741
+Username : jj
+Nasi Goreng | 15000
+Es susu | 9000
+Potato Roll | 8000
+Total Harga adalah Rp. 32.000
+
+2024-11-30 19:01:36.956752
+Username : rafli
+Nasi Spesial | 40000
+Es Doger | 8000
+Potato Roll | 8000
+Total Harga adalah Rp. 56.000
+
+2024-11-30 20:45:04.277713
+Username : newRafli
+Nasi Spesial | 40000
+Es Limau | 8000
+Total Harga adalah Rp. 48.000
+
+2024-11-30 20:46:59.848081
+Username : newRafli
+Total Harga adalah Rp. 0
+
