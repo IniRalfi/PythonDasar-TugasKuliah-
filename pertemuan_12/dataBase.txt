@@ -1,0 +1,4 @@
+
+Nama Karyawan : RAFLI
+Umur Karyawan : 33
+Gaji Pokok Karyawan : 34
