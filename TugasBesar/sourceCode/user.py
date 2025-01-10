@@ -31,7 +31,7 @@ def cetakPoin(userName):
 
 
 def tambahPoin(userName, totalHarga):
-    file_akun = 'Database/databaseAkun/akun_user.txt'
+    file_akun = '/media/iniralfi/Laboratory/Kuliah/Tugas Kuliah/Semester 1/Matkul/Praktikum Pemograman Komputer/Laporan-Harian/TugasBesar/sourceCode/Database/databaseAkun/akun_user.txt'
     file_poin = 'Database/databaseAkun/poin_pelanggan.txt'
 
     with open(file_akun, 'r') as file:
@@ -58,7 +58,7 @@ def tambahPoin(userName, totalHarga):
 
     print(f"Poin berhasil ditambahkan. Total poin untuk {userName}: {poin_baru:.2f}")
 
-def pesanMenu(userName):
+def pesanMenu(user_name):
     while True: 
         operasi = int(input('Anda ingin apa?\n1. Pesan Makanan\n2. Cek Point\n3. Keluar\n'))
         if operasi == 1:
@@ -169,15 +169,15 @@ def pesanMenu(userName):
                     for pesanan in bill:
                         print(f'{pesanan[0]} | {pesanan[1]}')
                     print(f'Total Harga adalah Rp. {teksFormat.format_uang(totalHarga)}')
-                    tambahPoin(userName,totalHarga)
-                    catatLog(bill,totalHarga,userName)
+                    tambahPoin(user_name,totalHarga)
+                    catatLog(bill,totalHarga,user_name)
                     tambahUangKas(totalHarga)
                     break
                 else:
                     print('Pilihan kategori tidak valid. Silahkan ulangi.')
 
         elif operasi == 2:
-            cetakPoin(userName)
+            cetakPoin(user_name)
 
         elif operasi == 3:
             print('Keluar dari sistem. Terima Kasih!')
@@ -186,39 +186,62 @@ def pesanMenu(userName):
         else:
             print('Pilihan operasi tidak valid. Silahkan ulangi.')
 
+def login():
+    akun_user_list = []
+    with open('/media/iniralfi/Laboratory/Kuliah/Tugas Kuliah/Semester 1/Matkul/Praktikum Pemograman Komputer/Laporan-Harian/TugasBesar/sourceCode//media/iniralfi/Laboratory/Kuliah/Tugas Kuliah/Semester 1/Matkul/Praktikum Pemograman Komputer/Laporan-Harian/TugasBesar/sourceCode/Database/databaseAkun/akun_user.txt', 'r') as file:
+        for line in file:
+            akun_user = line.split()
+            akun_user_list.append(akun_user)
+        
+        for attempt in range(3):
+            user_name = input('Masukkan username anda : ')
+            password = input('Masukkan password anda : ')
+
+            for akun_user in akun_user_list:
+                if user_name == akun_user_list[:-1] and password == akun_user_list[-1]:
+                    print(f'Selamat datang kembali {user_name}!')
+                    pesanMenu(user_name)
+                    return
+                if attempt < 2:
+                    print(f'Username atau password anda salah silahkan masukkan kembali\nSisa kesempatan : {2-attempt}')
+                    if attempt == 2:
+                        print('Kesempatan login anda sudah habis, program di hentikan! sialhkan mulai ulang')
+                        break
 
 
-def loginUser():    
+def loginUser():
+    print()    
     print('Selamat datang di sistem Informasi Restauran FliFood!!!')
     while True:
         akun = int(input('Silakan anda :\n1. Login (Jika sudah memiliki akun)\n2. Buat Akun(Untuk pengguna Baru)\nPilihan Anda : '))
         if akun == 1:
+            login()
+            # akun_user_list = [] 
+            # with open('/media/iniralfi/Laboratory/Kuliah/Tugas Kuliah/Semester 1/Matkul/Praktikum Pemograman Komputer/Laporan-Harian/TugasBesar/sourceCode/Database/databaseAkun/akun_user.txt', 'r') as file:
+            #     for line in file:  
+            #         akun_user = line.split()  
+            #         akun_user_list.append(akun_user)
 
-            akun_user_list = [] 
-            with open('Database/databaseAkun/akun_user.txt', 'r') as file:
-                for line in file:  # Loop untuk membaca setiap baris dalam file
-                    akun_user = line.split()  # Memisahkan setiap baris berdasarkan spasi
-                    akun_user_list.append(akun_user)
-                
-            for attempt in range(3): 
-                userName = input('Silahkan Masukkan username akun: ')
-                password = input('Silahkan Masukkan password: ')
+            # for attempt in range(3): 
+            #     userName = input('Silahkan Masukkan username akun: ')
+            #     password = input('Silahkan Masukkan password: ')
 
-                for akun_user in akun_user_list:
-                    if userName == akun_user[0] and password == akun_user[1]:  # Asumsi format: username password
-                        print('Selamat datang!!!')
-                        pesanMenu(userName)  
-                        return
-                print('Username atau password salah')
-                if attempt < 2:
-                    print(f'Anda memiliki {2 - attempt} kesempatan lagi')
-            print("Anda telah mencapai batas percobaan login. Program dihentikan.") 
-        
+            #     for akun_user in akun_user_list:
+            #         if userName == akun_user[0] and password == akun_user[1]: 
+            #             print('Selamat datang!!!')
+            #             pesanMenu(userName)  
+            #             return
+            #     print('Username atau password salah')
+            #     if attempt < 2:
+            #         print(f'Anda memiliki {2 - attempt} kesempatan lagi')
+            #     print("Anda telah mencapai batas percobaan login. Program dihentikan.")
+            #     break
+
         elif akun == 2:
             print('Selamat datang pengguna baru, silahkan buat akun anda!!!')
             while True:
                 userName = input('Silahkan buat user name Anda : ')
-                with open('Database/databaseAkun/akun_user.txt', 'r') as file:
+                with open('/media/iniralfi/Laboratory/Kuliah/Tugas Kuliah/Semester 1/Matkul/Praktikum Pemograman Komputer/Laporan-Harian/TugasBesar/sourceCode/Database/databaseAkun/akun_user.txt', 'r') as file:
                     username_terdaftar = False
                     for line in file:
                         parts = line.split()
@@ -230,7 +253,7 @@ def loginUser():
 
                 if not username_terdaftar:
                     password = input('Silahkan buat password Anda : ')
-                    with open('Database/databaseAkun/akun_user.txt', 'a') as file:
+                    with open('/media/iniralfi/Laboratory/Kuliah/Tugas Kuliah/Semester 1/Matkul/Praktikum Pemograman Komputer/Laporan-Harian/TugasBesar/sourceCode/Database/databaseAkun/akun_user.txt', 'a') as file:
                         file.write(f'{userName} {password}\n')
                     
                     with open('Database/databaseAkun/poin_pelanggan.txt', 'a') as file:   
@@ -241,3 +264,5 @@ def loginUser():
                     break
                 else:
                     continue
+loginUser()
+
